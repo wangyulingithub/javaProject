@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>聊天</title>
+    <link th:replace="index::cssMo">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/messages/chatRoom.css}">
+</head>
+<body class="pb-5 pt-5">
+<nav id="room_nav" class="fixed-top navbar">
+    <div class="container">
+        <ul class="nav w-100">
+            <li id="personal" class="nav-item ">
+                <a class="#" href="#" onclick="javascript:history.go(-1);">
+                    <i class="fa fa-angle-left" aria-hidden="true" style="font-size: 25px;font-weight: bold"></i>
+                </a>
+            </li>
+            <li class="nav-item ml-auto">
+                <input class=" form-control " type="text" placeholder="Search">
+
+            </li>
+            <li class="nav-item  ">
+                <button class="search_friend btn btn-outline-info" type="button">搜索</button>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section id="room_send" class="mt-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <ul class="search_result list-group">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="index::footer"></footer>
+</body>
+<script th:replace="index::script_1Mo"></script>
+<script th:inline="javascript" th:src="@{js/messages/searchFriend.js}"></script>
+<script th:inline="javascript" type="text/javascript">
+    var sysUser = [[${sysUser}]];
+</script>
+</html>

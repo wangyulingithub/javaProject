@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>聊天</title>
+    <link th:replace="index::cssMo">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/messages/chatRoom.css}">
+</head>
+<body class="pb-5 pt-5">
+<nav id="room_nav" class="fixed-top navbar">
+    <div class="container">
+        <ul class="nav w-100">
+            <li id="personal" class="nav-item ">
+                <a class="#" href="#" onclick="javascript:history.go(-1);">
+                    <i class="fa fa-angle-left" aria-hidden="true" style="font-size: 25px;font-weight: bold"></i>
+                </a>
+            </li>
+            <li class="to_send nav-item m-auto">
+                <a class="send_name" th:mark="${mark}" th:text="${chooseName}"></a>
+            </li>
+            <li class="nav-item mr-md-5" th:if="${mark}==1">
+                <a class="nav-link" href="#" data-toggle="popover" data-placement="bottom" data-html="true"
+                   data-content="
+                    <ul class='list-group list-group-flush'>
+                        <li class='single_records list-group-item list-group-item-action'><a href='#'>聊天记录</a></li>
+                        <li class='list-group-item list-group-item-action'>查看资料</li>
+                    </ul>">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li class="nav-item mr-md-5" th:if="${mark}==2">
+                <a id="list_number" href="javascript:" title="群内人员">
+                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                </a>
+                <ul class='card room_list list-group list-group-flush'>
+                    <li class="list-group-item list-group-item w-100">
+                        <a class="all_records btn btn-outline-success">聊天记录</a>
+                    </li>
+                    <li class="card-header list-group-item list-group-item w-100">
+                        <a class="btn btn-outline-success" data-toggle="collapse" href="#collapseRoom">在线用户</a>
+                        <ul id="collapseRoom" class="collapse room_lists list-group list-group-flush pre-scrollable">
+
+                            <!-- 显示进入聊天室的所有人!-->
+
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section id="room_send" class="mt-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="data_info">
+
+                    <!--  消息填充处 !-->
+
+                </div>
+                <div class="room_nei input-group fixed-bottom w-50 m-auto pb-1">
+                    <input type="text" class="form-control" placeholder="消息内容" name="info">
+                    <div class="input-group-append">
+                        <span id="sendInfo" class="input-group-text bg-success">发送</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script th:replace="index::script_1Mo"></script>
+<script type="text/javascript" th:src="@{lib/js/sockjs.min.js}"></script>
+<script type="text/javascript" th:src="@{lib/js/stomp.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/messages/chatRoom.js}"></script>
+<script th:inline="javascript" th:src="@{/js/messages/socket.js}"></script>
+<script th:inline="javascript" type="text/javascript">
+    var sysUser = [[${sysUser}]];
+    var username = [[${sysUser.username}]];
+    var state = [[${mark}]];
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+        if (sysUser!==null){
+            $.socketLink(sysUser, state);
+        }else {
+            alert("连线失败！")
+        }
+        $.hintTime();
+    });
+</script>
+</html>

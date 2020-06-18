@@ -1,0 +1,17 @@
+server:
+  port: 9090
+
+Spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/chat?characterEncoding=UTF-8&tinyInt1isBit=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+mybatis:
+  mapper-locations: classpath:static/mapper/*.xml
+  type-aliases-package: cn.gzmdrw.chat.pojo

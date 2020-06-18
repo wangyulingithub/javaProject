@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gzmdrw.chat.mapper.UserMapper">
+
+    <resultMap type="SysUser" id="myUser">
+        <result column="u_id" property="id"/>
+        <result column="u_userId" property="userId"/>
+        <result column="u_username" property="username"/>
+        <result column="u_password" property="password"/>
+        <result column="u_headShot" property="headShot"/>
+        <result column="u_sex" property="sex"/>
+        <result column="u_signature" property="signature"/>
+    </resultMap>
+
+    <select id="getUserByName" resultMap="myUser" parameterType="String">
+
+        SELECT
+        u.id u_id,u.user_id u_userId,u.username u_username,u.password u_password,
+        u.head_shot u_headShot,u.sex u_sex,u.signature u_signature
+        FROM
+        c_user u
+        WHERE
+        u.username=#{username}
+
+    </select>
+
+    <select id="getUserByUserId" resultMap="myUser" parameterType="String">
+
+        SELECT
+        u.id u_id,u.user_id u_userId,u.username u_username,
+        u.password u_password,u.head_shot u_headShot,u.sex u_sex,u.signature u_signature
+        FROM
+        c_user u
+        WHERE
+        u.user_id=#{userId}
+
+    </select>
+    <insert id="addUser" parameterType="SysUser">
+
+        INSERT INTO c_user (user_id,password,username,head_shot,sex) VALUES (#{userId},#{password},#{username},#{headShot},#{sex})
+
+    </insert>
+
+</mapper>

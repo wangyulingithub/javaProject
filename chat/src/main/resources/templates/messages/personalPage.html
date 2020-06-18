@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link th:replace="index::cssMo">
+    <link rel="stylesheet" type="text/css" th:href="@{css/personalPage.css}">
+</head>
+<body>
+
+<nav id="lg_nav" class="w-100 fixed-top">
+    <a href="#" class="fan_a float-left " title="返回上一级" onclick="javascript:history.go(-1);">
+        <i class="fa fa-angle-left" aria-hidden="true" style="font-size: 30px"></i>
+    </a>
+    <h6 class="ge-ren text-center" th:value="${userId}">个人信息</h6>
+</nav>
+<section id="lg_section" class="w-50 m-auto">
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-action">
+            <input id="upload_picture" name="file" class="w-100 h-100" type="file" title="点击更换">
+            <span class="picture_w mr-auto">头像</span>
+            <img id="avatar_img" th:src="${sysFriendUser.headShot}" class="picture_t img-fluid rounded-circle" alt="头像">
+            <i class="fa fa-angle-right" aria-hidden="true" style="font-size: 25px; color:#c6c8ca"></i>
+        </li>
+        <li class="list-group-item w-100">
+            <span class="mr-auto">性别：</span>
+            <span class="fa fa-venus" aria-hidden="true" style="color: #e83e8c" th:if="${sysFriendUser.sex} eq 'female'"></span>
+            <span class="fa fa-mars" aria-hidden="true" th:if="${sysFriendUser.sex} eq 'male'"></span>
+        </li>
+        <!-- 按钮：用于打开模态框 -->
+        <li id="model_user" class="user_name list-group-item list-group-item-action" data-toggle="modal" data-target="#myModal">
+            <span class="mr-auto">名称：</span><a href="#" class="friend_name text-decoration-none" th:text="${sysFriendUser.username}"></a>
+            <i class="fa fa-angle-right" aria-hidden="true" style="font-size: 25px; color:#c6c8ca"></i>
+        </li>
+        <li class="list-group-item w-100">
+            <span class="mr-auto">账号：</span><span class="friend_id" th:text="${sysFriendUser.userId}"></span>
+        </li>
+        <li class="user_sign list-group-item list-group-item-action" data-toggle="modal" data-target="#myModalTwo">
+            <span class="mr-auto">个性签名：</span>
+            <span class="mr-0">更改</span>
+            <i class="fa fa-angle-right" aria-hidden="true" style="font-size: 25px; color:#c6c8ca"></i>
+        </li>
+        <li class=" list-group-item w-100">
+            <p class="user_signature" th:text="${sysFriendUser.signature}"></p>
+        </li>
+    </ul>
+
+    <!-- 模态框 -->
+    <!-- 更改名称 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">名称更改！</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input name="username" placeholder="名称：" class="form-control border-0" data-focus="true" type="text">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-outline-primary">更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框 -->
+    <!-- 更改个性签名 -->
+    <div class="modal fade" id="myModalTwo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">个性签名更改！</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="个性说明"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-outline-primary">更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="send_tm w-75 text-center fixed-bottom">
+    <button class="send_t btn btn-outline-info" th:username="${sysFriendUser.username}">添加好友</button>
+    <button class="send_m btn btn-outline-info" th:username="${sysFriendUser.username}">发送消息</button>
+</div>
+<footer th:replace="index::footer"></footer>
+</body>
+<script th:replace="index::script_1Mo"></script>
+<script type="text/javascript" th:src="@{js/personalPage.js}"></script>
+<script type="text/javascript" th:src="@{lib/js/toastr.min.js}"></script>
+<script th:inline="javascript">
+    var friend = [[${sysFriend}]];  //当前用户的好友
+    var protagonist = [[${sysFriendUser}]];   //好友资料
+    var sysUserId = [[${userId}]];  //  当前用户
+    var addFriend=$(".send_tm .send_t");
+    var sendMsg=$(".send_tm .send_m");
+    var isAmend = $('#lg_section>ul>li');
+    var isAmendI = $('#lg_section>ul>li>i');
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+
+
+        if (friend!=null){
+            addFriend.attr("disabled","disabled");
+        }else{
+            sendMsg.attr("disabled","disabled");
+        }
+
+        if (protagonist.userId !== sysUserId){
+            isAmend.addClass("disabled");
+            isAmendI.hide();
+        }
+    });
+
+    //模态框显示完后输入框获取焦点
+        $(document).on('shown.bs.modal','#myModal',function () {
+        $("input[type='text']").focus();
+        $("textarea").focus();
+    });
+
+</script>
+</html>

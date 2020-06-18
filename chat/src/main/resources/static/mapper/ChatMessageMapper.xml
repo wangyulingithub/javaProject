@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gzmdrw.chat.mapper.ChatMessageMapper">
+
+    <resultMap type="SendMessage" id="myMessage">
+        <result column="to_user" property="toUser"/>
+        <result column="message_type" property="messageType"/>
+        <result column="message" property="message"/>
+        <result column="receiver" property="receiver"/>
+        <result column="send_date" property="sendDate"/>
+    </resultMap>
+
+    <select id="chatRecord" resultMap="myMessage" parameterType="String">
+
+        SELECT
+        to_user,message_type,message,receiver,send_date
+        FROM
+        c_message
+        WHERE
+        receiver IN (#{toUser},#{receiver})
+        AND
+        to_user IN (#{receiver},#{toUser})
+
+    </select>
+    <!--查询所有的聊天记录-->
+    <select id="allRecord" resultMap="myMessage" parameterType="String">
+
+        SELECT
+        to_user,message_type,message,receiver,send_date
+        FROM
+        c_message
+        WHERE
+        receiver=#{receiver}
+
+    </select>
+
+    <!--保存消息-->
+    <insert id="saveMessage" parameterType="SendMessage">
+
+        INSERT INTO c_message (to_user,message_type,message,receiver,send_date) VALUES
+        (#{sysUser.username},#{messageType},#{message},#{receiver},#{sendDate})
+
+    </insert>
+
+</mapper>

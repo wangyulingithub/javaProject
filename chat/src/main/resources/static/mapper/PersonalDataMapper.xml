@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gzmdrw.chat.mapper.PersonalDataMapper">
+
+    <!--更改图片消息-->
+    <update id="updatePicture" parameterType="String">
+        UPDATE c_user SET head_shot = #{pictureUrl} WHERE user_id = #{userId}
+    </update>
+
+    <!--更改名称消息-->
+    <update id="updateUserName" parameterType="String">
+        UPDATE c_user SET username = #{username} WHERE user_id = #{userId}
+    </update>
+
+    <!--更改名称消息-->
+    <update id="updateSignature" parameterType="String">
+        UPDATE c_user SET signature = #{signature} WHERE user_id = #{userId}
+    </update>
+
+</mapper>

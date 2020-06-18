@@ -1,0 +1,26 @@
+#lx_nav {
+    padding: 0;
+    height: 50px;
+    background-color: #E4E4E4;
+}
+
+#lx_nav .container .nav > li {
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lx_nav .container .nav .to_send, #lx_nav .container .nav .to_send a {
+    font-size: 15px;
+}
+
+#info_send .container .row > div > div > a > img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid purple;
+}
+
+.alert {
+    padding: 0;
+    padding: 10px;
+}

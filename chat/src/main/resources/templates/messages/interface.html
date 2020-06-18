@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<link>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="UTF-8">
+<title>个人资料</title>
+<link th:replace="index::cssMo">
+<link rel="stylesheet" type="text/css" th:href="@{css/messages/interface.css}">
+</head>
+<body class="pb-5 pt-5">
+<nav id="lx_nav" class="fixed-top navbar">
+    <div class="container">
+        <ul class="nav w-100">
+            <li id="personal" class="nav-item ">
+                <a class="nav-link" href="#" onclick="javascript:history.go(-1);">
+                    <i class="fa fa-angle-left" aria-hidden="true" style="font-size: 25px;font-weight: bold"></i>
+                </a>
+            </li>
+            <li class="to_send nav-item m-auto">
+                正在与<a class="send_name" th:text="${userName}"></a>聊天中...
+            </li>
+            <li class="nav-item mr-md-5">
+                <a class="nav-link" href="#" data-toggle="popover" data-placement="bottom" data-html="true"
+                   data-content="
+                    <ul class='list-group list-group-flush'>
+                        <li class='list-group-item list-group-item-action'>添加好友</li>
+                        <li class='list-group-item list-group-item-action'>添加好友</li>
+                        <li class='list-group-item list-group-item-action'>添加好友</li>
+                        <li class='list-group-item list-group-item-action'>添加好友</li>
+                    </ul>">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<section id="info_send" class="mt-1">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="right_x w-75 mr-auto">
+                    <a class="float-left"><img th:src="@{../../static/defaultImg/tou01.jpg}" class="img-fluid rounded-circle" alt="头像"></a>
+                    <div class="alert alert-light ml-4">
+                        我爱你我爱你我爱你我爱你我爱你我爱你
+                    </div>
+                </div>
+                <div class="left_x w-75 ml-auto border-info">
+                    <a class="float-right"><img th:src="@{../../static/defaultImg/tou01.jpg}" class="img-fluid rounded-circle" alt="头像"></a>
+                    <div class="alert alert-info mr-4">
+                        我爱你我爱你我爱你我爱你我爱你我爱你
+                    </div>
+                </div>
+                <div class="send_nei input-group fixed-bottom w-50 m-auto pb-1">
+                    <input type="text" class="form-control" placeholder="消息内容" name="info">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-success">发送</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script th:replace="index::script_1Mo"></script>
+<script type="text/javascript" th:src="@{js/messages/interface.js}"></script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="popover"]').popover();
+    })
+</script>
+</html>

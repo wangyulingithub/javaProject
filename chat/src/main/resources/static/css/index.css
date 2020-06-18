@@ -1,0 +1,158 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-size: 17px;
+    font-family: "楷体";
+}
+
+body {
+    /*background-color: #92c2bd;*/
+    padding-top: 50px;
+    padding-bottom: 45px;
+}
+
+
+/********************顶部**********************/
+
+#lk_header img {
+    width: 100%;
+    height: 200px;
+}
+
+/********************导航**********************/
+
+#lk_nav {
+    padding: 0;
+    height: 50px;
+    background-color: #E4E4E4;
+}
+
+#lk_nav .container .nav > a {
+    color: black;
+}
+
+#lk_nav .container .nav > li {
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#lk_nav .container .nav .i1 > a:hover {
+    border-bottom: 2px solid purple;
+}
+
+#personal .top_picture {
+    padding: 0;
+}
+
+#lk_nav .container .nav .nav-item > a > img {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+
+#lk_nav .container .nav .input-k {
+    display: block;
+    width: 400px;
+    margin: auto;
+}
+
+/********************中部样式**********************/
+
+#lk_section .container .row .lef .card #collapseTwo .card-body {
+    padding: 0;
+}
+
+#lk_section .container .row .lef .card #collapseTwo .card-body > ul > li {
+    padding: 10px 0;
+    border: 0;
+}
+
+#lk_section .container .row .lef .card #collapseTwo .card-body > ul > li > img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid purple;
+}
+
+#lk_section .container .row .zone .lk-input {
+    position: absolute;
+}
+
+#info-left > ul > li > img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid purple;
+}
+
+#room_name {
+    text-align: center;
+    opacity: 0.9;
+    box-shadow: #666666 0px 0px 3px;
+}
+
+.nav_chat::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
+
+.nav_chat {
+    overflow: auto;
+}
+
+#lk_section .container .row .zone .pre-scrollable > div > a > img {
+    width: 30px;
+    height: 30px;
+    border: 1px solid purple;
+}
+
+.alert {
+    padding: 0;
+    padding: 10px;
+}
+
+#lk_section .container .row .ght > ul > li {
+    border: 0;
+}
+
+#lk_section .container .row > div {
+    border-left: 1px solid #b4b4b4;
+    /*height: 600px;*/
+}
+
+/********************底部页脚**********************/
+
+#lk_footer {
+    background-color: #E4E4E4;
+    text-align: center;
+}
+
+#lk_footer a {
+    color: #515151;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/********************下拉框**********************/
+.popover-body {
+    padding: 0;
+    width: 160px;
+    text-align: center;
+}
+
+.drop_down > li {
+    cursor: pointer;
+}
+
+/********************头像下拉选项**********************/
+/*#lk_nav .container .nav > li > .install {
+    display: none;
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 999;
+    cursor: pointer;
+}*/

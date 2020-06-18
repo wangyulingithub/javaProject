@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/lib/css/font-awesome.min.css}">
+    <style type="text/css">
+        * {
+            font-family: "楷体";
+        }
+
+        body {
+            background-color: #92c2bd;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container data_info">
+    <div class="modal fade" id="myModal" data-backdrop="static" role="dialog" aria-labelledby="myModal"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content p-lg-2 bg-light">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-comments-o" aria-hidden="true"></i>欢迎注册</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" th:action="@{/add}" method="post">
+                        <div class="form-group row">
+                            <label for="username" class="col-5">用户名:</label><span id="error_name"></span>
+                            <div class="col-sm-auto input-group">
+                                <input class="form-control" id="username" type="text" name="username"
+                                       required="required" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-4">密码:</label><span id="error_password"></span>
+                            <div class="col-sm-auto input-group">
+                                <input class="form-control" id="password" type="password" name="password"
+                                       required="required">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="rePassword" class="col-5">再次密码:</label><span id="error_rePassword"></span>
+                            <div class="col-sm-auto input-group">
+                                <input class="form-control" id="rePassword" type="password" name="rePassword"
+                                       required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="">性别:</label>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="sex_choose custom-control-input" id="customRadio1" name="sex" value="female">
+                                <label class="custom-control-label" for="customRadio1">
+                                    <span class="fa fa-venus" aria-hidden="true" style="color: #e83e8c"></span>
+                                </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio2" name="sex" value="male" checked>
+                                <label class="custom-control-label " for="customRadio2">
+                                    <span class="fa fa-mars" aria-hidden="true" ></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-offset-4 col-auto">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" required="required">
+                                    <label class="custom-control-label" for="customCheck">我已同意条款</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="ml-3 col-10">
+                                <button type="submit" class="btn btn-primary  w-100 ">注册</button>
+                            </div>
+                        </div>
+                    </form>
+                    <span>已有账号？<a th:href="@{/toLogin}">去登录</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 信息栏!-->
+</div>
+</body>
+<script type="text/javascript" th:src="@{/lib/js/jquery-3.4.1.min.js}"></script>
+<script type="module" th:src="@{/lib/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/lib/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/register.js}"></script>
+<script type="text/javascript" th:src="@{lib/js/toastr.min.js}"></script>
+<script th:inline="javascript" type="text/javascript"></script>
+</html>
